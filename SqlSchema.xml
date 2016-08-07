@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: http://ondras.zarovi.cz/sql/demo/?keyword=default -->
+<sql>
+<datatypes db="mysql">
+    <group color="rgb(238,238,170)" label="Numeric">
+        <type sql="INTEGER" label="Integer" quote="" length="0"/>
+        <type sql="TINYINT" label="TINYINT" quote="" length="0"/>
+        <type sql="SMALLINT" label="SMALLINT" quote="" length="0"/>
+        <type sql="MEDIUMINT" label="MEDIUMINT" quote="" length="0"/>
+        <type sql="INT" label="INT" quote="" length="0"/>
+        <type sql="BIGINT" label="BIGINT" quote="" length="0"/>
+        <type sql="DECIMAL" label="Decimal" quote="" length="1" re="DEC"/>
+        <type sql="FLOAT" label="Single precision" quote="" length="0"/>
+        <type sql="DOUBLE" label="Double precision" quote="" length="0" re="DOUBLE"/>
+    </group>
+
+    <group color="rgb(255,200,200)" label="Character">
+        <type sql="CHAR" label="Char" quote="'" length="1"/>
+        <type sql="VARCHAR" label="Varchar" quote="'" length="1"/>
+        <type sql="MEDIUMTEXT" label="Text" quote="'" length="0" re="TEXT"/>
+        <type sql="BINARY" label="Binary" quote="'" length="1"/>
+        <type sql="VARBINARY" label="Varbinary" quote="'" length="1"/>
+        <type sql="BLOB" label="BLOB" quote="'" length="0" re="BLOB"/>
+    </group>
+
+    <group color="rgb(200,255,200)" label="Date &amp; Time">
+        <type sql="DATE" label="Date" quote="'" length="0"/>
+        <type sql="TIME" label="Time" quote="'" length="0"/>
+        <type sql="DATETIME" label="Datetime" quote="'" length="0"/>
+        <type sql="YEAR" label="Year" quote="" length="0"/>
+        <type sql="TIMESTAMP" label="Timestamp" quote="'" length="0"/>
+    </group>
+    
+    <group color="rgb(200,200,255)" label="Miscellaneous">
+        <type sql="ENUM" label="ENUM" quote="" length="1"/>
+        <type sql="SET" label="SET" quote="" length="1"/>
+        <type sql="bit" label="Bit" quote="" length="0"/>
+    </group>
+</datatypes><table x="463" y="151" name="user">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="37" y="258" name="authentication">
+<row name="authentication_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="service_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="google_authentication" row="id" />
+</row>
+<row name="service_type" null="1" autoincrement="0">
+<datatype>ENUM</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>authentication_id</part>
+</key>
+</table>
+<table x="733" y="175" name="entry">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="display_date" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="text" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="is_public" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="331" y="426" name="google_authentication">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="email" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="profile_url" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="660" y="321" name="user_setting">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="setting_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="setting" row="id" />
+</row>
+<row name="value" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="652" y="472" name="setting">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="846" y="477" name="setting_value">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="setting_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="setting" row="id" />
+</row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+</sql>

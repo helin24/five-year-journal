@@ -1,0 +1,9 @@
+Write a new journal entry
+
+<%= form_for @entry, url: {action: "create"} do |entry| %>
+    <%= @entry.display_date %>
+    <%= hidden_field_tag(:display_date, @entry.display_date) %>
+    <%= entry.text_area :text %>
+    Make public? <%= entry.check_box :is_public %>
+    <%= entry.submit "Submit" %>
+<% end %>

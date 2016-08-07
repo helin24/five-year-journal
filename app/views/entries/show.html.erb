@@ -1,0 +1,9 @@
+Hello
+
+<%= @entry.text %>
+
+<% @previous_entries.each do |years_ago, entry| %>
+    <% if entry %>
+        <%= years_ago %> years ago: <%= entry.text %>
+    <% end %>
+<% end %>
