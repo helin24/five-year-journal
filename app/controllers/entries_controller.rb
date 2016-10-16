@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
 
     def index
-        
+
     end
 
     def show
@@ -43,6 +43,24 @@ class EntriesController < ApplicationController
             redirect_to new_entry_path
         end
 
+    end
+
+    def calendar
+      @current_month = Date.today.month
+      current_year = Date.today.year
+      beginning_date = Date.new(current_year, @current_month, 1)
+      end_date = Date.new(current_year, @current_month, -1)
+
+      month_entries = Entry.where(
+        user_id: session[:user_id],
+        display_date: beginning_date .. end_date
+      )
+
+      @days_entries = {}
+      (beginning_date .. end_date).each do |day|
+        day_entry = month_entries.find { |entry| entry.display_date == day }
+        @days_entries[day] = day_entry
+      end
     end
 
 end
