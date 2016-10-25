@@ -1,0 +1,10 @@
+<%= @current_month %> Journal Entries
+</br>
+
+<% @days_entries.each do |day, day_entry| %>
+  <%= day %>
+  <% if day_entry %>
+    <%= day_entry.text %>
+  <% end%>
+  </br>
+<% end %>

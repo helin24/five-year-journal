@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'application#index'
   get 'redirect' => 'users#redirect'
   get 'entry/choose', to: 'entries#choose', as: 'choose_entry'
+  get 'calendar', to: 'entries#calendar', as: 'calendar'
 
   resources :users
   resources :entries
