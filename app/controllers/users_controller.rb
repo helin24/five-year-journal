@@ -63,7 +63,15 @@ class UsersController < ApplicationController
     end
     
     session[:user_id] = user.id
+
+    # Instead of redirect to user#get time zone path
     redirect_to choose_entry_path
+  end
+
+  def timezone
+    # Try to guess user's timezone???
+    # Ask user to select from a menu of timezones and save it with the user
+    # then redirect to choose_entry_path
   end
 
 end
