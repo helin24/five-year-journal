@@ -2,6 +2,7 @@
 - `docker-compose up`: start the project
 - `docker ps`: show processes
 - `docker exec -it <container name or id> bash`: enter docker container
+- `docker build .`: build the project and newly run bundle install
 
 ##Notes
 - Enter the docker container in order to open a rails console

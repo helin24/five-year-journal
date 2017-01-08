@@ -1,3 +1,5 @@
+require 'google/api_client/client_secrets'
+
 class EntriesController < ApplicationController
 
     def index
@@ -5,6 +7,23 @@ class EntriesController < ApplicationController
     end
 
     def show
+        client_secrets = Google::APIClient::ClientSecrets.load
+        auth_client = client_secrets.to_authorization
+        auth_client.update!(
+            :scope => 'https://www.googleapis.com/auth/gmail.readonly'
+        )        
+
+        url = URI.parse('https://www.googleapis.com/gmail/v1/users/helin.shiah@gmail.com/messages')
+        # url = URI.parse('https://www.googleapis.com/gmail/v1/users/me/messages')
+        req = Net::HTTP::Get.new(url.to_s)
+        res = Net::HTTP.start(url.host, url.port, :use_ssl => url.scheme == 'https') {|http|
+            http.request(req)
+        }
+
+        result = JSON.parse(res.read_body)
+
+        p result
+
         # default landing position if user has an entry for today
         @entry = Entry.find_by(id: params[:id], user_id: session[:user_id])
 

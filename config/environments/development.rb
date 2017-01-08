@@ -38,4 +38,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # http://stackoverflow.com/questions/29417328/how-to-disable-cannot-render-console-from-on-rails
+  config.web_console.whitelisted_ips = '172.18.0.1'
 end
