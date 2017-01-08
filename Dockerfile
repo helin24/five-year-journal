@@ -4,5 +4,6 @@ RUN mkdir /myapp
 WORKDIR /myapp
 ADD Gemfile /myapp/Gemfile
 ADD Gemfile.lock /myapp/Gemfile.lock
+RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install
 ADD . /myapp
