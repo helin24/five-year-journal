@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
     def index
-        render plain: "test settings"
+        render 'index'
     end
 end
